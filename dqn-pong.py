@@ -2,12 +2,12 @@ import gym
 
 from collections import deque
 
-from src.util.preprocess import preprocess_frame, stack_frames
-from src.agents.dqn import DeepQNetwork
+from util.preprocess import preprocess_frame, stack_frames
+from agents.dqn import DeepQNetwork
 
 if __name__ == '__main__':
     # initialize environment
-    env = gym.make("SpaceInvaders-v0")
+    env = gym.make("Pong-v0")
 
     # hyperparameters
     max_episodes = 1000  # put this to something meaningful
@@ -22,7 +22,6 @@ if __name__ == '__main__':
     batch_size = 32
     train_start = 1000
     done = False
-
 
     for episode in range(max_episodes):
         # start new episode my reseting the environment
@@ -57,7 +56,6 @@ if __name__ == '__main__':
                 agent.replay(batch_size)
 
             if episode > 1 and episode % 50 == 0:
-                agent.save_model('models/dqn-space-invaders.h5')
-
+                agent.save_model('models/dqn-pong.h5')
 
     env.close()
